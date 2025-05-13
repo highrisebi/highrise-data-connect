@@ -46,7 +46,7 @@ const CKEditorWrapper: React.FC<CKEditorWrapperProps> = ({ initialValue = '', on
         config={editorConfiguration}
         data={initialValue}
         onReady={handleReady}
-        onChange={(event, editor) => {
+        onChange={(_event, editor) => {
           const data = editor.getData();
           onChange(data);
         }}
