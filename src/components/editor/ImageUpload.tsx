@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { uploadImage } from '@/lib/cloudinary';
+import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploadProps {
   onUploadComplete: (imageUrl: string) => void;
@@ -9,6 +10,7 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const { toast } = useToast();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -33,8 +35,18 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
       
       // Pass the image URL to the parent component
       onUploadComplete(result.url);
+      
+      toast({
+        title: "Image uploaded",
+        description: "Your image has been uploaded successfully"
+      });
     } catch (error) {
       console.error('Error uploading image:', error);
+      toast({
+        title: "Upload failed",
+        description: "There was a problem uploading your image",
+        variant: "destructive"
+      });
     } finally {
       setIsUploading(false);
       setTimeout(() => setProgress(0), 1000);
@@ -43,9 +55,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
 
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Upload Image
-      </label>
       <div className="flex items-center">
         <label className="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors">
           {isUploading ? 'Uploading...' : 'Choose File'}
@@ -63,9 +72,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete }) => {
         <div className="mt-2">
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div 
-              className="bg-blue-600 h-2.5 rounded-full" 
+              className="bg-blue-600 h-2.5 rounded-full transition-all duration-300" 
               style={{ width: `${progress}%` }}
             ></div>
+          </div>
+          <div className="text-sm text-gray-500 mt-1">
+            {progress < 100 ? `Uploading: ${progress}%` : 'Upload complete!'}
           </div>
         </div>
       )}
