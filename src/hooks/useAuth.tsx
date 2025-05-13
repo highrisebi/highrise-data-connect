@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 interface User {
@@ -18,7 +18,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = user !== null;
 
@@ -74,7 +74,7 @@ interface AuthGuardProps {
   children: ReactNode;
 }
 
-export const AuthGuard = ({ children }: AuthGuardProps) => {
+export const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
 
