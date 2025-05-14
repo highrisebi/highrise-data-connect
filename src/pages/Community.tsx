@@ -172,8 +172,10 @@ const Community = () => {
                     <span className="mx-2">•</span> 
                     <Clock className="w-4 h-4 mr-1" /> 7 min
                   </div>
-                  <Button variant="link" size="sm" className="px-0 text-gray-900 hover:text-gray-700 flex items-center">
-                    Read more <ChevronRight className="ml-1 w-4 h-4" />
+                  <Button variant="link" size="sm" className="px-0 text-gray-900 hover:text-gray-700 flex items-center" asChild>
+                    <Link to="/community/1">
+                      Read more <ChevronRight className="ml-1 w-4 h-4" />
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -198,32 +200,36 @@ const Community = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Main featured post */}
                 <div className="md:col-span-6">
-                  <Card className="overflow-hidden border-0 shadow-lg h-full">
-                    <div className="relative">
-                      <AspectRatio ratio={16 / 9}>
-                        <img 
-                          src={recentPosts[0].image} 
-                          alt={recentPosts[0].title} 
-                          className="object-cover w-full h-full rounded-t-lg"
-                        />
-                      </AspectRatio>
-                      <div className="absolute top-4 left-4">
-                        {renderCategoryBadge(recentPosts[0].category)}
+                  <Card className="overflow-hidden border-0 shadow-lg h-full group">
+                    <Link to={`/community/${recentPosts[0].id}`}>
+                      <div className="relative">
+                        <AspectRatio ratio={16 / 9}>
+                          <img 
+                            src={recentPosts[0].image} 
+                            alt={recentPosts[0].title} 
+                            className="object-cover w-full h-full rounded-t-lg group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </AspectRatio>
+                        <div className="absolute top-4 left-4">
+                          {renderCategoryBadge(recentPosts[0].category)}
+                        </div>
                       </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-2xl font-bold line-clamp-2 mb-3">{recentPosts[0].title}</h3>
-                      <div className="flex items-center text-sm text-gray-500 mb-4">
-                        <User className="w-4 h-4 mr-1" /> {recentPosts[0].author}
-                        <span className="mx-2">•</span>
-                        <CalendarIcon className="w-4 h-4 mr-1" /> {recentPosts[0].date}
-                        <span className="mx-2">•</span> 
-                        <Clock className="w-4 h-4 mr-1" /> {recentPosts[0].readTime}
-                      </div>
-                    </CardContent>
+                      <CardContent className="p-6">
+                        <h3 className="text-2xl font-bold line-clamp-2 mb-3 group-hover:text-blue-600 transition-colors">{recentPosts[0].title}</h3>
+                        <div className="flex items-center text-sm text-gray-500 mb-4">
+                          <User className="w-4 h-4 mr-1" /> {recentPosts[0].author}
+                          <span className="mx-2">•</span>
+                          <CalendarIcon className="w-4 h-4 mr-1" /> {recentPosts[0].date}
+                          <span className="mx-2">•</span> 
+                          <Clock className="w-4 h-4 mr-1" /> {recentPosts[0].readTime}
+                        </div>
+                      </CardContent>
+                    </Link>
                     <CardFooter className="px-6 pb-6 pt-0">
-                      <Button variant="default" className="bg-black hover:bg-gray-800 text-white px-5 rounded-full">
-                        Read more <ChevronRight className="ml-1 w-4 h-4" />
+                      <Button variant="default" className="bg-black hover:bg-gray-800 text-white px-5 rounded-full" asChild>
+                        <Link to={`/community/${recentPosts[0].id}`}>
+                          Read more <ChevronRight className="ml-1 w-4 h-4" />
+                        </Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -232,30 +238,36 @@ const Community = () => {
                 {/* Right side posts */}
                 <div className="md:col-span-6 space-y-8">
                   {recentPosts.slice(1, 4).map((post, index) => (
-                    <div key={post.id} className="flex gap-6 items-start">
+                    <div key={post.id} className="flex gap-6 items-start group">
                       <div className="w-1/3">
-                        <div className="relative">
-                          <AspectRatio ratio={4/3}>
-                            <img 
-                              src={post.image} 
-                              alt={post.title}
-                              className="object-cover w-full h-full rounded-lg" 
-                            />
-                          </AspectRatio>
-                          <div className="absolute top-2 left-2">
-                            {renderCategoryBadge(post.category)}
+                        <Link to={`/community/${post.id}`}>
+                          <div className="relative">
+                            <AspectRatio ratio={4/3}>
+                              <img 
+                                src={post.image} 
+                                alt={post.title}
+                                className="object-cover w-full h-full rounded-lg group-hover:scale-105 transition-transform duration-300" 
+                              />
+                            </AspectRatio>
+                            <div className="absolute top-2 left-2">
+                              {renderCategoryBadge(post.category)}
+                            </div>
                           </div>
-                        </div>
+                        </Link>
                       </div>
                       <div className="w-2/3 space-y-2">
-                        <h3 className="text-xl font-bold line-clamp-2">{post.title}</h3>
-                        <div className="flex flex-wrap text-sm text-gray-500">
-                          <CalendarIcon className="w-4 h-4 mr-1" /> {post.date}
-                          <span className="mx-2">•</span> 
-                          <Clock className="w-4 h-4 mr-1" /> {post.readTime}
-                        </div>
-                        <Button variant="link" className="px-0 text-black hover:text-gray-700 flex items-center">
-                          Read more <ChevronRight className="ml-1 w-4 h-4" />
+                        <Link to={`/community/${post.id}`}>
+                          <h3 className="text-xl font-bold line-clamp-2 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                          <div className="flex flex-wrap text-sm text-gray-500">
+                            <CalendarIcon className="w-4 h-4 mr-1" /> {post.date}
+                            <span className="mx-2">•</span> 
+                            <Clock className="w-4 h-4 mr-1" /> {post.readTime}
+                          </div>
+                        </Link>
+                        <Button variant="link" className="px-0 text-black hover:text-gray-700 flex items-center" asChild>
+                          <Link to={`/community/${post.id}`}>
+                            Read more <ChevronRight className="ml-1 w-4 h-4" />
+                          </Link>
                         </Button>
                       </div>
                     </div>
@@ -291,30 +303,34 @@ const Community = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {featuredPosts.slice(0, 6).map(post => (
-                  <Card key={post.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div className="relative">
-                      <AspectRatio ratio={16 / 9}>
-                        <img 
-                          src={post.image} 
-                          alt={post.title} 
-                          className="object-cover w-full h-full"
-                        />
-                      </AspectRatio>
-                      <div className="absolute top-4 left-4">
-                        {renderCategoryBadge(post.category)}
+                  <Card key={post.id} className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 group">
+                    <Link to={`/community/${post.id}`}>
+                      <div className="relative">
+                        <AspectRatio ratio={16 / 9}>
+                          <img 
+                            src={post.image} 
+                            alt={post.title} 
+                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </AspectRatio>
+                        <div className="absolute top-4 left-4">
+                          {renderCategoryBadge(post.category)}
+                        </div>
                       </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold line-clamp-2 mb-2">{post.title}</h3>
-                      <div className="flex text-sm text-gray-500 mb-4">
-                        <CalendarIcon className="w-4 h-4 mr-1" /> {post.date}
-                        <span className="mx-2">•</span> 
-                        <Clock className="w-4 h-4 mr-1" /> {post.readTime}
-                      </div>
-                      <Button variant="link" className="px-0 text-black hover:text-gray-700 flex items-center">
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-bold line-clamp-2 mb-2 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                        <div className="flex text-sm text-gray-500 mb-4">
+                          <CalendarIcon className="w-4 h-4 mr-1" /> {post.date}
+                          <span className="mx-2">•</span> 
+                          <Clock className="w-4 h-4 mr-1" /> {post.readTime}
+                        </div>
+                      </CardContent>
+                    </Link>
+                    <Button variant="link" className="px-6 pb-6 text-black hover:text-gray-700 flex items-center" asChild>
+                      <Link to={`/community/${post.id}`}>
                         Read more <ChevronRight className="ml-1 w-4 h-4" />
-                      </Button>
-                    </CardContent>
+                      </Link>
+                    </Button>
                   </Card>
                 ))}
               </div>

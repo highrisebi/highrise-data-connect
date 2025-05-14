@@ -250,6 +250,9 @@ const Editor = () => {
       // Example: const mutation = useMutation({ mutationFn: createPost });
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
       
+      // Generate a post ID (in a real app this would come from the backend)
+      const postId = isEditing ? Number(id) : Math.floor(Math.random() * 1000) + 100;
+      
       toast({
         title: isDraft ? 'Draft Saved' : 'Post Published',
         description: isDraft 
@@ -257,8 +260,12 @@ const Editor = () => {
           : 'Your post has been published successfully',
       });
       
-      // Navigate to community page after successful save
-      navigate('/community');
+      // Navigate to the post page if published, otherwise to community page
+      if (!isDraft) {
+        navigate(`/community/${postId}`);
+      } else {
+        navigate('/community');
+      }
     } catch (error) {
       console.error('Error saving post:', error);
       toast({
