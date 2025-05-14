@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -42,7 +41,7 @@ const fetchPostDetails = async (id: string) => {
     publishedDate: "November 10, 2024",
     image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80&w=1200",
     likes: 47,
-    comments: 12,
+    commentCount: 12, // Changed from 'comments' to 'commentCount' to avoid duplicate property
     relatedPosts: [
       {
         id: 101,
@@ -244,7 +243,7 @@ const Post = () => {
                 </button>
                 <button className="flex items-center text-gray-500 hover:text-gray-900">
                   <MessageSquare className="h-5 w-5 mr-1" />
-                  <span>{post.comments?.length || 0}</span>
+                  <span>{post.commentCount}</span>
                 </button>
               </div>
               <div className="flex space-x-4">

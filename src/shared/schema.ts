@@ -1,4 +1,3 @@
-
 // Mock schema definitions
 // In a real app, this would be Drizzle ORM schema definitions
 
@@ -8,6 +7,7 @@ export interface User {
   password: string; // Would be hashed in a real app
   role: 'admin' | 'user';
   createdAt: Date;
+  profileImage?: string; // Added profileImage as optional property
 }
 
 export interface Post {
