@@ -2,7 +2,7 @@
 // In a real app, this would be Drizzle ORM schema definitions
 
 export interface User {
-  id: number;
+  id: string;
   email: string;
   password: string; // Would be hashed in a real app
   role: 'admin' | 'user';
