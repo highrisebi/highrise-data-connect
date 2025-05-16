@@ -12,10 +12,10 @@ export interface User {
 }
 
 export interface Post {
-  id: string; // Changed from number to string
+  id: string;
   title: string;
   content: string;
-  authorId: string; // Changed from number to string
+  authorId: string;
   category: 'Tutorial' | 'News' | 'Community';
   tags: string[];
   createdAt: Date;
@@ -23,10 +23,10 @@ export interface Post {
 }
 
 export interface Comment {
-  id: string; // Changed from number to string
+  id: string;
   content: string;
-  authorId: string; // Changed from number to string
-  postId: string; // Changed from number to string
+  authorId: string;
+  postId: string;
   createdAt: Date;
 }
 
@@ -40,6 +40,7 @@ export const users = pgTable('users', {
   password: text('password').notNull(),
   role: text('role', { enum: ['admin', 'user'] }).notNull().default('user'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  profileImage: text('profile_image'),
 });
 
 export const posts = pgTable('posts', {

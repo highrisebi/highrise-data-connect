@@ -57,22 +57,8 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Abstract colorful wallpaper section - 4/5 width */}
-      <div className="w-4/5 bg-gradient-to-br from-purple-500 via-indigo-600 to-blue-700 flex items-center justify-center">
-        <div className="flex flex-col items-center">
-          <img 
-            src="/lovable-uploads/39739171-e649-42e9-900c-f588d7d31d90.png" 
-            alt="HighriseBI Logo" 
-            className="h-24 mb-4" 
-          />
-          <div className="text-white text-7xl font-bold">
-            HighriseBI
-          </div>
-        </div>
-      </div>
-      
-      {/* Forgot password form section - 1/5 width */}
-      <div className="w-1/5 min-w-[300px] bg-white dark:bg-slate-900 flex items-center justify-center px-6">
+      {/* Forgot password form section - left side 1/5 width */}
+      <div className="w-1/5 min-w-[300px] bg-white dark:bg-slate-900 flex items-center justify-center px-6 z-10">
         <div className="w-full">
           <h2 className="text-2xl font-bold text-center mb-2 dark:text-white">Forgot Password?</h2>
           <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
@@ -134,6 +120,18 @@ const ForgotPassword = () => {
               Back to Sign In
             </Link>
           </div>
+        </div>
+      </div>
+      
+      {/* Abstract colorful wallpaper section - 4/5 width */}
+      <div className="w-4/5 relative flex items-center justify-center overflow-hidden">
+        <img 
+          src="/lovable-uploads/c2582762-c4d7-4d13-9a25-e4e10e590c68.png" 
+          alt="Abstract green waves" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="relative z-10 flex flex-col items-center">
+          <h1 className="text-white text-3xl font-bold">HighriseBI</h1>
         </div>
       </div>
     </div>
