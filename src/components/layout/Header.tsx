@@ -47,7 +47,7 @@ const Header = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger className="focus:outline-none">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user?.profileImage || ''} />
+                        <AvatarImage src={user?.image || ''} />
                         <AvatarFallback>{user?.email?.[0].toUpperCase()}</AvatarFallback>
                       </Avatar>
                     </DropdownMenuTrigger>
@@ -85,7 +85,7 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="focus:outline-none mr-4">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user?.profileImage || ''} />
+                    <AvatarImage src={user?.image || ''} />
                     <AvatarFallback>{user?.email?.[0].toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>

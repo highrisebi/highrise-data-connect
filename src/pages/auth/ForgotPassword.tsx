@@ -56,9 +56,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="fixed inset-0 flex items-center overflow-hidden">
       {/* Abstract colorful wallpaper section with logo at bottom right */}
-      <div className="w-full h-screen fixed inset-0">
+      <div className="w-full h-full fixed inset-0">
         <img 
           src="/lovable-uploads/c2582762-c4d7-4d13-9a25-e4e10e590c68.png" 
           alt="Abstract green waves" 
@@ -74,11 +74,11 @@ const ForgotPassword = () => {
       </div>
       
       {/* Forgot password form section - floating card with transparency */}
-      <div className="relative z-10 h-auto self-center ml-12">
-        <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm w-80 rounded-xl shadow-xl p-6">
+      <div className="relative z-10 ml-14 self-center">
+        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl w-[400px] rounded-xl shadow-xl p-8">
           <div className="w-full">
-            <h2 className="text-2xl font-bold text-center mb-2 dark:text-white">Forgot Password?</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
+            <h2 className="text-2xl font-bold text-center mb-2 text-slate-800 dark:text-white">Forgot Password?</h2>
+            <p className="text-center text-slate-700 dark:text-slate-400 mb-6">
               {!submitted 
                 ? "Enter your email and we'll send you instructions to reset your password."
                 : "Check your email for reset instructions."}
@@ -86,13 +86,13 @@ const ForgotPassword = () => {
             
             {!submitted ? (
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-slate-800 dark:text-white">Email</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="your.email@example.com" 
@@ -108,7 +108,7 @@ const ForgotPassword = () => {
                   
                   <Button
                     type="submit"
-                    className="w-full bg-green-600 hover:bg-green-700"
+                    className="w-full bg-slate-800 hover:bg-slate-900 text-white"
                     disabled={isLoading}
                   >
                     {isLoading ? 'Sending...' : 'Send Reset Instructions'}
@@ -117,15 +117,15 @@ const ForgotPassword = () => {
               </Form>
             ) : (
               <div className="text-center">
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-6">
-                  <p className="text-green-700 dark:text-green-400">
+                <div className="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-lg mb-6">
+                  <p className="text-slate-800 dark:text-slate-300">
                     We've sent reset instructions to your email. Please check your inbox.
                   </p>
                 </div>
                 <Button
                   onClick={handleReset}
                   variant="outline"
-                  className="w-full bg-white/80 dark:bg-slate-800/80"
+                  className="w-full bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white"
                 >
                   Try Another Email
                 </Button>
@@ -133,7 +133,7 @@ const ForgotPassword = () => {
             )}
             
             <div className="mt-6 text-center">
-              <Link to="/auth/login" className="text-green-600 hover:text-green-800 dark:text-green-400 font-medium flex items-center justify-center gap-1">
+              <Link to="/auth/login" className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium flex items-center justify-center gap-1">
                 <ArrowLeftIcon className="h-4 w-4" />
                 Back to Sign In
               </Link>

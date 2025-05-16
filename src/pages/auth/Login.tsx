@@ -63,9 +63,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="fixed inset-0 flex items-center overflow-hidden">
       {/* Abstract colorful wallpaper section with logo at bottom right */}
-      <div className="w-full h-screen fixed inset-0">
+      <div className="w-full h-full fixed inset-0">
         <img 
           src="/lovable-uploads/c2582762-c4d7-4d13-9a25-e4e10e590c68.png" 
           alt="Abstract green waves" 
@@ -80,20 +80,20 @@ const Login = () => {
         </div>
       </div>
       
-      {/* Login form section - floating card with transparency */}
-      <div className="relative z-10 h-auto self-center ml-12">
-        <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm w-80 rounded-xl shadow-xl p-6">
+      {/* Login form section - floating card with more transparency */}
+      <div className="relative z-10 ml-14 self-center">
+        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl w-[400px] rounded-xl shadow-xl p-8">
           <div className="w-full">
-            <h2 className="text-2xl font-bold mb-6 dark:text-white text-center">Welcome!</h2>
+            <h2 className="text-2xl font-bold mb-6 dark:text-white text-slate-800 text-center">Welcome!</h2>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-slate-800 dark:text-white">Email</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="your.email@example.com" 
@@ -112,7 +112,7 @@ const Login = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-slate-800 dark:text-white">Password</FormLabel>
                       <div className="relative">
                         <FormControl>
                           <Input
@@ -125,7 +125,7 @@ const Login = () => {
                         </FormControl>
                         <button
                           type="button"
-                          className="absolute right-3 top-2.5 text-muted-foreground hover:text-foreground"
+                          className="absolute right-3 top-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white"
                           onClick={() => setShowPassword(!showPassword)}
                           tabIndex={-1}
                         >
@@ -138,7 +138,7 @@ const Login = () => {
                       </div>
                       <FormMessage />
                       <div className="text-right text-sm">
-                        <Link to="/auth/forgot-password" className="text-green-600 hover:text-green-800 dark:text-green-400">
+                        <Link to="/auth/forgot-password" className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium">
                           Forgot password?
                         </Link>
                       </div>
@@ -148,7 +148,7 @@ const Login = () => {
                 
                 <Button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700"
+                  className="w-full bg-slate-800 hover:bg-slate-900 text-white"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Signing in...' : 'Sign In'}
@@ -156,21 +156,21 @@ const Login = () => {
               </form>
             </Form>
             
-            <div className="mt-4">
+            <div className="mt-5">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white/90 dark:bg-slate-900/90 text-gray-500 dark:text-gray-400">Or</span>
+                  <span className="px-2 bg-white/70 dark:bg-slate-900/70 text-gray-500 dark:text-gray-400">Or</span>
                 </div>
               </div>
               
-              <div className="mt-4">
+              <div className="mt-5">
                 <Button 
                   variant="outline" 
                   onClick={handleGoogleLogin} 
-                  className="w-full flex items-center justify-center gap-2 bg-white/80 dark:bg-slate-800/80"
+                  className="w-full flex items-center justify-center gap-2 bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700"
                   disabled={isLoading}
                 >
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
@@ -197,9 +197,9 @@ const Login = () => {
               </div>
             </div>
             
-            <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-6 text-center text-sm text-slate-700 dark:text-slate-400">
               Don't have an account?{' '}
-              <Link to="/auth/register" className="text-green-600 hover:text-green-800 dark:text-green-400 font-medium flex items-center justify-center gap-1 mt-1">
+              <Link to="/auth/register" className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium flex items-center justify-center gap-1 mt-1">
                 <UserPlusIcon className="h-4 w-4" />
                 Create an account
               </Link>
