@@ -1,3 +1,4 @@
+
 // Mock schema definitions
 // In a real app, this would be Drizzle ORM schema definitions
 
@@ -11,10 +12,10 @@ export interface User {
 }
 
 export interface Post {
-  id: number;
+  id: string; // Changed from number to string
   title: string;
   content: string;
-  authorId: number;
+  authorId: string; // Changed from number to string
   category: 'Tutorial' | 'News' | 'Community';
   tags: string[];
   createdAt: Date;
@@ -22,10 +23,10 @@ export interface Post {
 }
 
 export interface Comment {
-  id: number;
+  id: string; // Changed from number to string
   content: string;
-  authorId: number;
-  postId: number;
+  authorId: string; // Changed from number to string
+  postId: string; // Changed from number to string
   createdAt: Date;
 }
 

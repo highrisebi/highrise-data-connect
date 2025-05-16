@@ -15,6 +15,7 @@ import Editor from "@/pages/Editor";
 import Post from "@/pages/Post";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
+import ForgotPassword from "@/pages/auth/ForgotPassword";
 import NotFound from "@/pages/NotFound";
 
 // Layout
@@ -61,6 +62,7 @@ const App = () => (
                 {/* Auth routes */}
                 <Route path="/auth/login" element={<Login />} />
                 <Route path="/auth/register" element={<Register />} />
+                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
                 
                 {/* Catch-all route */}
                 <Route path="*" element={<NotFound />} />
