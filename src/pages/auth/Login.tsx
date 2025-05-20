@@ -63,7 +63,7 @@ const Login = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center overflow-hidden">
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden">
       {/* Abstract colorful wallpaper section with logo at bottom right */}
       <div className="w-full h-full fixed inset-0">
         <img 
@@ -80,9 +80,9 @@ const Login = () => {
         </div>
       </div>
       
-      {/* Login form section - floating card with more transparency */}
-      <div className="relative z-10 ml-14 self-center">
-        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl w-[400px] rounded-xl shadow-xl p-8">
+      {/* Login form section - centered card with higher transparency */}
+      <div className="relative z-10 self-center">
+        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl w-[440px] rounded-xl shadow-xl p-8">
           <div className="w-full">
             <h2 className="text-2xl font-bold mb-6 dark:text-white text-slate-800 text-center">Welcome!</h2>
             
@@ -162,7 +162,7 @@ const Login = () => {
                   <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white/70 dark:bg-slate-900/70 text-gray-500 dark:text-gray-400">Or</span>
+                  <span className="px-2 bg-white/40 dark:bg-slate-900/40 text-gray-500 dark:text-gray-400">Or</span>
                 </div>
               </div>
               

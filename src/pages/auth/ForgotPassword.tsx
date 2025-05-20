@@ -56,7 +56,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center overflow-hidden">
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden">
       {/* Abstract colorful wallpaper section with logo at bottom right */}
       <div className="w-full h-full fixed inset-0">
         <img 
@@ -73,9 +73,9 @@ const ForgotPassword = () => {
         </div>
       </div>
       
-      {/* Forgot password form section - floating card with transparency */}
-      <div className="relative z-10 ml-14 self-center">
-        <div className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl w-[400px] rounded-xl shadow-xl p-8">
+      {/* Forgot password form section - centered card with higher transparency */}
+      <div className="relative z-10 self-center">
+        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl w-[440px] rounded-xl shadow-xl p-8">
           <div className="w-full">
             <h2 className="text-2xl font-bold text-center mb-2 text-slate-800 dark:text-white">Forgot Password?</h2>
             <p className="text-center text-slate-700 dark:text-slate-400 mb-6">
