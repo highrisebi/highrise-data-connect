@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider, AuthGuard } from "@/hooks/useAuth";
 
 // Pages
@@ -20,9 +20,26 @@ import NotFound from "@/pages/NotFound";
 
 // Layout
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 // Query client
 import { queryClient } from "@/lib/queryClient";
+
+// Layout wrapper component to conditionally render header/footer
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const isAuthPage = location.pathname.startsWith('/auth/');
+  
+  return (
+    <div className="min-h-screen flex flex-col">
+      {!isAuthPage && <Header />}
+      <main className="flex-grow">
+        {children}
+      </main>
+      {!isAuthPage && <Footer />}
+    </div>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -31,44 +48,61 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/community/:id" element={<Post />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/services" element={<Services />} />
-                
-                {/* Protected routes */}
-                <Route 
-                  path="/editor" 
-                  element={
-                    <AuthGuard>
-                      <Editor />
-                    </AuthGuard>
-                  } 
-                />
-                <Route 
-                  path="/editor/:id" 
-                  element={
-                    <AuthGuard>
-                      <Editor />
-                    </AuthGuard>
-                  } 
-                />
-                
-                {/* Auth routes */}
-                <Route path="/auth/login" element={<Login />} />
-                <Route path="/auth/register" element={<Register />} />
-                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-                
-                {/* Catch-all route */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-          </div>
+          <Routes>
+            <Route path="/" element={
+              <Layout>
+                <Homepage />
+              </Layout>
+            } />
+            <Route path="/community" element={
+              <Layout>
+                <Community />
+              </Layout>
+            } />
+            <Route path="/community/:id" element={
+              <Layout>
+                <Post />
+              </Layout>
+            } />
+            <Route path="/contact" element={
+              <Layout>
+                <Contact />
+              </Layout>
+            } />
+            <Route path="/services" element={
+              <Layout>
+                <Services />
+              </Layout>
+            } />
+            
+            {/* Protected routes */}
+            <Route path="/editor" element={
+              <Layout>
+                <AuthGuard>
+                  <Editor />
+                </AuthGuard>
+              </Layout>
+            } />
+            <Route path="/editor/:id" element={
+              <Layout>
+                <AuthGuard>
+                  <Editor />
+                </AuthGuard>
+              </Layout>
+            } />
+            
+            {/* Auth routes - no header/footer */}
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/register" element={<Register />} />
+            <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+            
+            {/* Catch-all route */}
+            <Route path="*" element={
+              <Layout>
+                <NotFound />
+              </Layout>
+            } />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

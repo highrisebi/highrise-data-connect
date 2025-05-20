@@ -23,11 +23,18 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-transparent shadow-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-blue-600">HighriseBI</Link>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/6ef14066-8b8f-406f-9a6b-1fe1dd875e31.png" 
+                alt="HighriseBI Logo" 
+                className="h-10 w-auto mr-2" 
+              />
+              <span className="text-xl font-bold text-slate-800 dark:text-white">HighriseBI</span>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
@@ -47,7 +54,7 @@ const Header = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger className="focus:outline-none">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user?.image || ''} />
+                        {user?.avatarUrl && <AvatarImage src={user.avatarUrl} />}
                         <AvatarFallback>{user?.email?.[0].toUpperCase()}</AvatarFallback>
                       </Avatar>
                     </DropdownMenuTrigger>
@@ -85,7 +92,7 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="focus:outline-none mr-4">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user?.image || ''} />
+                    {user?.avatarUrl && <AvatarImage src={user.avatarUrl} />}
                     <AvatarFallback>{user?.email?.[0].toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
